@@ -1,24 +1,38 @@
-{
-  "name": "isocio.ai",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react-dom": "^19.1.0",
-    "react": "^19.1.0",
-    "@google/genai": "^1.9.0",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "react-syntax-highlighter": "^15.6.1"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0"
+import axios from 'axios';
+
+// تأكد من أن خادم تطوير Vite لديه حق الوصول إلى متغير البيئة هذا.
+// قد تحتاج إلى إضافة بادئة VITE_ إذا كنت تستخدم Vite.
+// على سبيل المثال: VITE_BACKEND_API_URL=http://localhost:3000/api
+const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:3000/api/openai'; 
+
+export const sendMessageToOpenAI = async (message: string, conversationHistory: any[] = []) => {
+  try {
+    const response = await axios.post(`${BACKEND_API_URL}/chat`, {
+      message: message,
+      history: conversationHistory,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('حدث خطأ أثناء إرسال الرسالة إلى OpenAI:', error);
+    throw error;
   }
-}
+};
+
+// مكان لوضع تكامل خدمة المصادقة.
+// في تطبيق حقيقي، ستقوم بدمجها مع الواجهة الخلفية للمصادقة الفعلية هنا.
+export const loginUser = async (email: string, password: string) => {
+  try {
+    // هذا تطبيق وهمي. استبدله باستدعاء API حقيقي لواجهة المصادقة الخلفية الخاصة بك.
+    console.log(`محاولة تسجيل الدخول للمستخدم: ${email}`);
+    // محاكاة تأخير استدعاء API
+    await new Promise(resolve => setTimeout(500, resolve));
+    if (email === "test@example.com" && password === "password") {
+      return { success: true, message: "تم تسجيل الدخول بنجاح" };
+    } else {
+      throw new Error("بيانات اعتماد غير صالحة");
+    }
+  } catch (error) {
+    console.error('خطأ في تسجيل الدخول:', error);
+    throw error;
+  }
+};
