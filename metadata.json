@@ -1,0 +1,6 @@
+{
+  "name": "isocio.ai",
+  "description": "A sleek and responsive chat application powered by the Google Gemini API. Engage in intelligent conversations with a helpful AI assistant in a beautifully designed interface.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

@@ -1,0 +1,20 @@
+{
+  "name": "azure-openai-express-api",
+  "version": "1.0.0",
+  "description": "A Node.js Express API project that connects to the Azure OpenAI GPT-4.1 model.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "author": "",
+  "license": "ISC"
+}
